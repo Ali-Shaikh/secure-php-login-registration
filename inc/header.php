@@ -16,3 +16,27 @@
     <script src="js/script.js"></script>
 </head>
 <body>
+<nav class="teal lighten-1">
+    <div class="container">
+        <div class="nav-wrapper">
+            <a href="index.php" class="brand-logo">Sagar</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="login.php">Login</a></li>
+                <li><a href="register.php">Register</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <ul id="nav-mobile" class="side-nav right">
+                <li><a href="login.php">Login</a></li>
+                <li><a href="register.php">Register</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        </div>
+    </div>
+</nav>
+<main>
+    <div class="container">

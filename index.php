@@ -1,39 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/jquery-2.2.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
-</head>
-<body>
-<nav class="navbar navbar-static-top navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="">Title</a>
+<?php
+include "inc/header.php";
+?>
+    <nav class="teal lighten-1">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.php" class="brand-logo">Sagar</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <ul id="nav-mobile" class="side-nav right">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="bs">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">D</a></li>
-            </ul>
+    </nav>
+    <main>
+        <div class="container">
+            <h1 class="header center teal-text">Welcome</h1>
+            <div class="row center">
+            </div>
         </div>
-    </div>
-</nav>
-<div class="container">
-    <div class="jumbotron">
-        <div class="text-center">Home Page</div>
-    </div>
-</div>
-</body>
-</html>
+    </main>
+<?php
+include "inc/footer.php";
+?>

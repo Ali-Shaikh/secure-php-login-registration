@@ -23,7 +23,7 @@ validate_user_login();
             </div>
             <div class="row">
                 <div class="col l12 m12 s12">
-                    <input type="checkbox" class="filled-in" id="remember_me"/>
+                    <input type="checkbox" class="filled-in" name="remember_me" id="remember_me"/>
                     <label for="remember_me">Keep me logged in</label>
                 </div>
             </div>
@@ -41,10 +41,10 @@ validate_user_login();
         </form>
     </div>
     <p class="center"><a
-            href="#"><strong class="teal-text lighten-1">Forgotten your password?</strong></a>
+            href="recover.php"><strong class="teal-text lighten-1">Forgotten your password?</strong></a>
     </p>
     <p class="center grey-text">Don't have an account? <a
-            href="index.php"><strong class=" teal-text lighten-1">Create a free account</strong></a>
+            href="register.php"><strong class=" teal-text lighten-1">Create a free account</strong></a>
     </p>
 </div>
 <?php include "inc/footer.php"; ?>

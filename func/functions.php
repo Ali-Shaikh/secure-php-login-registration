@@ -192,8 +192,9 @@ function validate_user_login()
     {
         $email = escape( clean( $_POST['email'] ) );
         $password = escape( clean( $_POST['password'] ) );
+        $remember_me = isset( $_POST['remember_me'] );
 
-        if ( login_user( $email, $password ) )
+        if ( login_user( $email, $password, $remember_me ) )
         {
             redirect( "admin.php" );
         } else
@@ -203,7 +204,7 @@ function validate_user_login()
     }
 }
 
-function login_user( $email, $password )
+function login_user( $email, $password, $remember_me )
 {
     $query = "select password, id from users where email='$email' and active = 1";
     $result = query( $query );
@@ -213,6 +214,10 @@ function login_user( $email, $password )
         $hashed_password = $row['password'];
         if ( md5( $password ) === $hashed_password )
         {
+            if ( $remember_me == "on" )
+            {
+                setcookie( 'email', $email, time() + 86400 );
+            }
             $_SESSION['email'] = $email;
 
             return true;
@@ -228,7 +233,7 @@ function login_user( $email, $password )
 
 function logged_in()
 {
-    if ( isset( $_SESSION['email'] ) )
+    if ( isset( $_SESSION['email'] ) || isset( $_COOKIE['email'] ) )
     {
         return true;
     } else

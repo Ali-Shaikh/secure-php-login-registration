@@ -3,12 +3,12 @@
         <div class="row center">
             <div class="col l12 s12 m12">
                 <br>
-                <h5 class="card-panel teal-text light">Recover Password</h5>
+                <h4 class="card-panel teal-text light">Recover Password</h4>
             </div>
         </div>
         <div class="row center">
             <div class="col l6 offset-l3 s12 m8 offset-m2 card-panel">
-                <h2 class="header teal-text lighten-1 light">Enter Email</h2>
+                <h3 class="header teal-text lighten-1 light">Enter Email</h3>
                 <form action="" method="post">
                     <div class="row">
                         <div class="input-field col s10 offset-s1 l10 offset-l1 m10 offset-m1">

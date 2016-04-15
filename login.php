@@ -1,8 +1,10 @@
 <?php include "inc/header.php"; ?>
+<div class="container">
     <div class="row">
         <form class="col l6 offset-l3 m8 offset-m2 s12" action="" method="post">
+            <?php display_message(); ?>
             <br>
-            <h3 class="teal-text lighten-1 center light">Login</h3>
+            <h3 class="teal-text lighten-1 center light" style="margin-top: 0;">Login</h3>
             <br>
             <div class="row">
                 <div class="input-field col l12 m12 s12">
@@ -29,10 +31,11 @@
             </div>
         </form>
     </div>
-<p class="center"><a
-        href="#"><strong class="teal-text lighten-1">Forgotten your password?</strong></a>
-</p>
+    <p class="center"><a
+            href="#"><strong class="teal-text lighten-1">Forgotten your password?</strong></a>
+    </p>
     <p class="center grey-text">Don't have an account? <a
             href="index.php"><strong class=" teal-text lighten-1">Create a free account</strong></a>
     </p>
+</div>
 <?php include "inc/footer.php"; ?>

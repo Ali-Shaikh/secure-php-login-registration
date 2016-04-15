@@ -1,6 +1,5 @@
-</div>
 </main>
-<footer class="page-footer teal lighten-1" style="padding-top: 0;">
+<footer class="page-footer teal lighten-1" style="padding-top: 0; margin-top: 0;">
     <div class="footer-copyright">
         <div class="container">
             2015 Sagar Ramachandran

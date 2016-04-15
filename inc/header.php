@@ -1,3 +1,4 @@
+<?php include "func/init.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +20,7 @@
 <nav class="teal lighten-1">
     <div class="container">
         <div class="nav-wrapper">
-            <a href="index.php" class="brand-logo">Sagar</a>
+            <a href="index.php" class="brand-logo">Levi</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="login.php">Login</a></li>
                 <li><a href="register.php">Register</a></li>
@@ -39,4 +40,3 @@
     </div>
 </nav>
 <main>
-    <div class="container">

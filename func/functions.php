@@ -88,7 +88,6 @@ function validate_user_registration()
     }
 }
 
-
 function register_user( $first_name, $last_name, $username, $email, $password )
 {
     $first_name = escape( $first_name );
@@ -121,7 +120,6 @@ function register_user( $first_name, $last_name, $username, $email, $password )
         return true;
     }
 }
-
 
 function username_exists( $username )
 {
@@ -172,17 +170,70 @@ function activate_user()
                 $resultTwo = query( $queryTwo );
                 confirm( $resultTwo );
 
-                set_message( "<p class='green-text'>Your email address <strong>$email</strong> has been confirmed.</p>" );
+                set_message( "<p class='green-text center'>Your email address <strong>$email</strong> has been confirmed.</p>" );
 
                 redirect( "login.php" );
 
             } else
             {
-                set_message( "<p class='materialize-red-text center'>We're sorry, but something went wrong.</p>" );
+                set_message( "<p class='materialize-red-text center'><strong>We're sorry, but something went wrong.</strong></p>" );
 
                 redirect( "login.php" );
             }
         }
+    }
+}
+
+//login functions
+
+function validate_user_login()
+{
+    if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
+    {
+        $email = escape( clean( $_POST['email'] ) );
+        $password = escape( clean( $_POST['password'] ) );
+
+        if ( login_user( $email, $password ) )
+        {
+            redirect( "admin.php" );
+        } else
+        {
+            $_SESSION['login_error'] = 'Email or Password Incorrect! Please try again.';
+        }
+    }
+}
+
+function login_user( $email, $password )
+{
+    $query = "select password, id from users where email='$email' and active = 1";
+    $result = query( $query );
+    if ( row_count( $result ) == 1 )
+    {
+        $row = fetch_array( $result );
+        $hashed_password = $row['password'];
+        if ( md5( $password ) === $hashed_password )
+        {
+            $_SESSION['email'] = $email;
+
+            return true;
+        } else
+        {
+            return false;
+        }
+    } else
+    {
+        return false;
+    }
+}
+
+function logged_in()
+{
+    if ( isset( $_SESSION['email'] ) )
+    {
+        return true;
+    } else
+    {
+        return false;
     }
 }
 

@@ -1,9 +1,12 @@
-<?php include "inc/header.php"; ?>
+<?php
+include "inc/header.php";
+validate_user_login();
+?>
 <div class="container">
     <div class="row">
         <form class="col l6 offset-l3 m8 offset-m2 s12" action="" method="post">
-            <?php display_message(); ?>
             <br>
+            <?php display_message(); ?>
             <h3 class="teal-text lighten-1 center light" style="margin-top: 0;">Login</h3>
             <br>
             <div class="row">
@@ -27,6 +30,12 @@
             <div class="row">
                 <div class="col l12 m12 s12 center-align">
                     <button id="login" name="submit" value="login" class="btn" type="submit">Log in</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l12 m12 s12 center-align">
+                    <p class="materialize-red-text center"><strong><?php echo $_SESSION['login_error'];
+                            unset( $_SESSION['login_error'] ); ?></strong></p>
                 </div>
             </div>
         </form>

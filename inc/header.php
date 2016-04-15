@@ -27,6 +27,7 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
             <ul id="nav-mobile" class="side-nav right">
                 <li><a href="login.php">Login</a></li>
@@ -34,6 +35,7 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         </div>

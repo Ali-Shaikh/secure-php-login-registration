@@ -108,7 +108,6 @@ function register_user( $first_name, $last_name, $username, $email, $password )
         $password = md5( $password );
         $query = "INSERT INTO users (first_name,last_name,username,email,password,validation_code, active) VALUES  ('$first_name','$last_name','$username','$email','$password','$validation_code',0)";
         $result = query( $query );
-        confirm( $result );
 
         $subject = "Confirm your account, $first_name $last_name";
         $msg = "Hey $first_name, To complete your registration, please confirm your account. It's easy — just click on the link below.
@@ -162,13 +161,11 @@ function activate_user()
 
             $query = "select id from users where email='$email' and validation_code='$validation_code'";
             $result = query( $query );
-            confirm( $result );
 
             if ( row_count( $result ) == 1 )
             {
                 $queryTwo = "UPDATE users SET active = 1, validation_code=0 WHERE email='$email' and validation_code='$validation_code'";
                 $resultTwo = query( $queryTwo );
-                confirm( $resultTwo );
 
                 set_message( "<p class='green-text center'>Your email address <strong>$email</strong> has been confirmed.</p>" );
 
@@ -239,6 +236,82 @@ function logged_in()
     } else
     {
         return false;
+    }
+}
+
+function recover_password()
+{
+    if ( $_SERVER['REQUEST_METHOD'] == "POST" )
+    {
+        if ( isset( $_SESSION['token'] ) && $_POST['token'] === $_SESSION['token'] )
+        {
+            $email = escape( $_POST['email'] );
+
+            if ( email_exists( $email ) )
+            {
+                $validation_code = md5( $email + microtime() );
+                setcookie( 'temp_access_code', $validation_code, time() + 900 );
+                $query = "UPDATE users SET validation_code='$validation_code' WHERE email='$email'";
+                $result = query( $query );
+
+                $headers = "From: noreply@thelevisagar.com";
+                $subject = "Please reset your password";
+                $msg = "We heard that you lost your password. Sorry about that!
+
+But don’t worry! You can use the following link to reset your password:
+http://localhost/secure/code.php?email=$email&code=$validation_code";
+                if ( send_email( $email, $subject, $msg, $headers ) )
+                {
+                    set_message( "<p class='green-text center'>Check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.</p>" );
+
+                } else
+                {
+                    set_message( "<p class='materialize-red-text center'>Email could not be sent.</p>" );
+                }
+            } else
+            {
+                set_message( "<p class='materialize-red-text center'>Can't find that email, sorry.</p>" );
+            }
+        } else
+        {
+            redirect( "index.php" );
+        }
+    }
+}
+
+function validate_code()
+{
+    if ( isset( $_COOKIE['temp_access_code'] ) )
+    {
+        if ( ! isset( $_GET['email'] ) && ! isset( $_GET['code'] ) )
+        {
+            redirect( "index.php" );
+        } elseif ( empty( $_GET['email'] ) || empty( $_GET['code'] ) )
+        {
+            redirect( "index.php" );
+        } else
+        {
+            if ( isset( $_POST['code'] ) )
+            {
+                $email = clean( $_GET['email'] );
+                $validation_code = clean( $_POST['code'] );
+                $query = "select id from users where validation_code='$validation_code' and email='$email'";
+                $result = query( $query );
+
+                if ( row_count( $result ) == 1 )
+                {
+                    redirect( "reset.php" );
+                } else
+                {
+                    set_message( "<p class='materialize-red-text center'>Sorry, invalid validation code.</p>" );
+                }
+            }
+        }
+
+    } else
+    {
+        set_message( "<p class='materialize-red-text center'>Sorry, the link has expired.</p>" );
+        redirect( "recover.php" );
     }
 }
 

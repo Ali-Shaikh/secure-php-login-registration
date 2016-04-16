@@ -3,8 +3,10 @@
         <div class="row center">
             <div class="col l12 s12 m12">
                 <br>
-                <h5 class="card-panel teal-text light">We have sent a security code to your email <span>sagar.redm@gmail.com</span>
-                </h5>
+                <?php
+                validate_code();
+                display_message();
+                ?>
             </div>
         </div>
         <div class="row center">
@@ -13,11 +15,13 @@
                 <form action="" method="post">
                     <div class="row">
                         <div class="input-field col s10 offset-s1 l10 offset-l1 m10 offset-m1">
-                            <input id="code" type="password" autofocus required/>
+                            <input id="code" name="code" type="password" autofocus required/>
                         </div>
                     </div>
                     <div class="row">
-                        <button class="btn waves-effect waves-light grey" type="submit">cancel</button>
+                        <a href="login.php">
+                            <button class="btn waves-effect waves-light grey" type="button">cancel</button>
+                        </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <button class="btn waves-effect waves-light" type="submit">submit</button>
                     </div>

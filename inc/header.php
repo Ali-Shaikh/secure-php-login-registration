@@ -22,20 +22,30 @@
         <div class="nav-wrapper">
             <a href="index.php" class="brand-logo">Levi</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php">Register</a></li>
+                <?php if ( ! logged_in() ):?>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
+                <?php endif; ?>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <?php if ( logged_in() ): ?>
+                    <li><a href="admin.php">Admin</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php endif; ?>
             </ul>
             <ul id="nav-mobile" class="side-nav right">
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php">Register</a></li>
+                <?php if ( ! logged_in() ):?>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
+                <?php endif; ?>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <?php if ( logged_in() ): ?>
+                    <li><a href="admin.php">Admin</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php endif; ?>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         </div>

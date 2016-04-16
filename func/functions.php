@@ -300,7 +300,9 @@ function validate_code()
 
                 if ( row_count( $result ) == 1 )
                 {
-                    redirect( "reset.php" );
+                    setcookie( 'temp_access_code', $validation_code, time() + 900 );
+
+                    redirect( "reset.php?email=$email&code=$validation_code" );
                 } else
                 {
                     set_message( "<p class='materialize-red-text center'>Sorry, invalid validation code.</p>" );
@@ -313,6 +315,35 @@ function validate_code()
         set_message( "<p class='materialize-red-text center'>Sorry, the link has expired.</p>" );
         redirect( "recover.php" );
     }
+}
+
+
+function password_reset()
+{
+    if ( isset( $_COOKIE['temp_access_code'] ) )
+    {
+        if ( isset( $_GET['email'] ) && isset( $_GET['code'] ) )
+        {
+            if ( isset( $_SESSION['token'] ) && isset( $_POST['token'] ) )
+            {
+                if ( $_POST['token'] === $_SESSION['token'] )
+                {
+                    $password = md5( $_POST['password'] );
+                    $email = escape( $_GET['email'] );
+                    if ( $_POST['password'] === $_POST['confirm_password'] )
+                    {
+                        $query = "UPDATE users SET password='$password',validation_code=0 WHERE email='$email'";
+                        query( $query );
+                        set_message( "<p class='green-text center'>Password changed.  <a href='login.php' class='green-text'><strong>Click here to Login</strong></a></p>" );
+                    }
+                }
+            }
+        }
+    } else
+    {
+        set_message( "<p class='materialize-red-text center'>Sorry, your session has expired.</p>" );
+    }
+
 }
 
 ?>

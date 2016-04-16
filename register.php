@@ -20,8 +20,12 @@ validate_user_registration();
                     <label for="last_name">Surname</label>
                 </div>
                 <div class="input-field col l6 m12 s12">
-                    <span><label class="materialize-red-text"><?php echo $_SESSION['name_error'];
-                            unset( $_SESSION['name_error'] ); ?></label></span>
+                    <span><label class="materialize-red-text"><?php
+                            if ( isset( $_SESSION['name_error'] ) )
+                            {
+                                echo $_SESSION['name_error'];
+                                unset( $_SESSION['name_error'] );
+                            } ?></label></span>
                 </div>
             </div>
             <br class="hide-on-large-only">
@@ -31,8 +35,12 @@ validate_user_registration();
                     <label for="username">Username</label>
                 </div>
                 <div class="input-field col l6 m12 s12">
-                    <span><label class="materialize-red-text"><?php echo $_SESSION['username_error'];
-                            unset( $_SESSION['username_error'] ); ?></label></span>
+                    <span><label class="materialize-red-text"><?php
+                            if ( isset( $_SESSION['username_error'] ) )
+                            {
+                                echo $_SESSION['username_error'];
+                                unset( $_SESSION['username_error'] );
+                            } ?></label></span>
                 </div>
             </div>
             <br class="hide-on-large-only">
@@ -42,8 +50,12 @@ validate_user_registration();
                     <label for="email">Email</label>
                 </div>
                 <div class="input-field col l6 m12 s12">
-                    <span><label class="materialize-red-text"><?php echo $_SESSION['email_error'];
-                            unset( $_SESSION['email_error'] ); ?></label></span>
+                    <span><label class="materialize-red-text"><?php
+                            if ( isset( $_SESSION['email_error'] ) )
+                            {
+                                echo $_SESSION['email_error'];
+                                unset( $_SESSION['email_error'] );
+                            } ?></label></span>
                 </div>
             </div>
             <br class="hide-on-large-only">

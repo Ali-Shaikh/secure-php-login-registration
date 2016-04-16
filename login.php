@@ -1,5 +1,9 @@
 <?php
 include "inc/header.php";
+if ( logged_in() )
+{
+    redirect( "admin.php" );
+}
 validate_user_login();
 ?>
 <div class="container">
@@ -34,8 +38,11 @@ validate_user_login();
             </div>
             <div class="row">
                 <div class="col l12 m12 s12 center-align">
-                    <p class="materialize-red-text center"><strong><?php echo $_SESSION['login_error'];
-                            unset( $_SESSION['login_error'] ); ?></strong></p>
+                    <p class="materialize-red-text center"><strong><?php if ( isset( $_SESSION['login_error'] ) )
+                            {
+                                echo $_SESSION['login_error'];
+                                unset( $_SESSION['login_error'] );
+                            } ?></strong></p>
                 </div>
             </div>
         </form>

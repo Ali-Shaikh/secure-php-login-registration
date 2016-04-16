@@ -1,10 +1,13 @@
 <?php include "inc/header.php"; ?>
     <div class="container">
         <div class="row center">
-            <!--        <div class="col l12 s12 m12">-->
-            <!--            <br>-->
-            <!--            <h5 class="card-panel teal-text light"></h5>-->
-            <!--        </div>-->
+            <div class="col l12 s12 m12">
+                <br>
+                <?php
+                password_reset();
+                display_message();
+                ?>
+            </div>
         </div>
         <div class="row center">
             <div class="col l6 offset-l3 s12 m8 offset-m2 card-panel">
@@ -25,10 +28,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <button class="btn waves-effect waves-light grey" type="submit">cancel</button>
+                        <a href="login.php">
+                            <button class="btn waves-effect waves-light grey" type="button">cancel</button>
+                        </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <button class="btn waves-effect waves-light" type="submit">submit</button>
                     </div>
+                    <input type="hidden" class="hide" name="token" id="token" value="<?php echo token_generator(); ?>">
                 </form>
             </div>
         </div>

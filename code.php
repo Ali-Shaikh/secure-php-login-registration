@@ -25,7 +25,6 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <button class="btn waves-effect waves-light" type="submit">submit</button>
                     </div>
-                    <input type="hidden">
                 </form>
             </div>
         </div>
